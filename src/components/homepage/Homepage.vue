@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <br>
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -85,10 +86,10 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Homepage',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'This is the homepage.'
     }
   }
 }
