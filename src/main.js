@@ -6,14 +6,22 @@ import router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 import {store} from './vuex/store'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import {API} from './api/http.api'
 
 Vue.config.productionTip = false
+Vue.use(VueAxios, axios)
+
+// this bind should be done before Vue is created
+Vue.prototype.$api = API
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  axios,
+  components: {App},
   template: '<App/>'
 })

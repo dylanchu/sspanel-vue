@@ -1,33 +1,69 @@
 <template>
   <div class="hello">
     <br>
-    <h2>Here is dashboard page</h2>
+    <h2>Dashboard</h2>
     <br>
-    <p>aaa</p>
-    <p>bbb</p>
+    <div class="table-responsive">
+      <table class="table table-hover table-sm">
+        <thead class="thead-light">
+        <tr>
+          <th>note</th>
+          <th>id</th>
+          <th>name</th>
+          <th>email</th>
+          <th>level</th>
+          <th>port</th>
+          <th>ss pass</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="user in users" :key="user.id">
+          <td>{{user.note}}</td>
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.level}}</td>
+          <td>{{user.ss_port}}</td>
+          <td>{{user.ss_pwd}}</td>
+        </tr>
+        <tr v-if="users.length === 0">
+          <td>
+            <small><i>空的.</i></small>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'Dashboard'
-}
+  export default {
+    name: 'Dashboard',
+    data () {
+      return {
+        users: []
+      }
+    },
+    created () {
+      this.fetchData(this.$route.params)
+    },
+    methods: {
+      fetchData (p) {
+        // console.log(p)
+        this.axios.get(this.$api.allUsers).then((response) => {
+            this.users = response.data
+            console.log('success', this.users)
+          }, (response) => {
+            console.error('error', response.data)
+          }
+        )
+      }
+    }
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
