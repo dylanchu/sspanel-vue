@@ -52,7 +52,7 @@
       fetchData (p) {
         // console.log(p)
         this.axios.get(this.$api.allUsers).then((response) => {
-            this.users = response.data
+            this.users = response.data.data
             console.log('success', this.users)
           }, (response) => {
             console.error('error', response.data)
